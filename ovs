@@ -1,0 +1,6 @@
+# dump flows that have matched at least one packet
+ovs-ofctl dump-flows -O OpenFlow13 br-int  | grep -v n_packets=0
+# list interfaces
+ovs-vsctl list interface
+# list interface with some less fields
+ovs-vsctl list interface | grep -v "\[\]\|{}\|status\|ifindex\|ingress_policing\|link_\|statistics"
