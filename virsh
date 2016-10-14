@@ -1,0 +1,5 @@
+# clone a vm
+virt-clone -o original  -n new_vm --auto-clone
+
+virsh suspend a_vm
+virsh resume a_vm
