@@ -1,6 +1,19 @@
 # dump flows that have matched at least one packet
-ovs-ofctl dump-flows -O OpenFlow13 br-int  | grep -v n_packets=0
+ovs-ofctl dump-flows -O OpenFlow13 br-int  | grep -v n_packets=0 | cut -d, -f3-
 # list interfaces
 ovs-vsctl list interface
 # list interface with some less fields
 ovs-vsctl list interface | grep -v "\[\]\|{}\|status\|ifindex\|ingress_policing\|link_\|statistics"
+
+#figure out which interface belongs to which neutron namespace
+#) figure out which interfaces exist using the list interface command:
+list-interface | grep name -A2
+# figure out which namespace in neutron has that interface
+ip netns exec $namespace ip a
+
+# dump groups
+ovs-ofctl dump-groups br-int -O Openflow13
+
+#watch active flows
+watch -d 'ovs-ofctl dump-flows -O OpenFlow13 br-int  | grep -v n_packets=0 | cut -d, -f3-'
+
