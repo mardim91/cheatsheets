@@ -1,0 +1,3 @@
+# create a bgpvpn
+bgpvpn-create --name rski1 --import-targets 88:88 --export-targets 88:88 --route-distinguishers 11:11
+bgpvpn-net-assoc-create --network NET BGPVPN
