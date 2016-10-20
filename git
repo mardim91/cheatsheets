@@ -1,0 +1,26 @@
+# View commits that will be pushed
+git log @{u}..
+
+# View changes that are new on a feature branch
+git log -p feature --not master
+git diff master...feature
+
+# Interactive rebase for the last 7 commits
+git rebase -i @~7
+
+# Update all your submodules
+git submodule update --init --recursive
+
+# Remove all stale branches (ones that have been deleted on remote)
+git remote prune origin
+
+# Revisions can also be identified with :/text
+# So, this will show the first commit that has "cool" in their message body
+git show :/cool
+
+# tag magic
+git tag # view tags
+git tag -n99 # view tags
+git tag -a v1.0 -m "message"
+git show v1.0
+git push --tags
