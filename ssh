@@ -1,0 +1,16 @@
+# start a socks proxy over a jumphost even if ssh doesn't have -J
+ssh -L 8003:localhost:8003 jumphost -t ssh -D 8003 user@host.to.run.socks.proxy.on
+
+# Mount folder/filesystem through SSH
+sshfs name@server:/path/to/folder /path/to/mount/point
+# unmount
+fusermount -u /path/to/mount/point
+
+# config example for being able to do `ssh host2` and ssh into host2 via host1
+# this works inductively
+Host host1
+     Hostname example.com
+
+Host host2
+     Hostname ip_seen_by_host1
+     ProxyCommand ssh -W %h:%p host1
