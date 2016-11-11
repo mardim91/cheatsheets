@@ -17,3 +17,5 @@ ovs-ofctl dump-groups br-int -O Openflow13
 #watch active flows
 watch -d 'ovs-ofctl dump-flows -O OpenFlow13 br-int  | grep -v n_packets=0 | cut -d, -f3-'
 
+# get the other_config
+ovs-vsctl get Open_vSwitch $(ovs-vsctl show | head -n 1) other_config
