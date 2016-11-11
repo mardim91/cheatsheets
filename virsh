@@ -3,3 +3,5 @@ virt-clone -o original  -n new_vm --auto-clone
 
 virsh suspend a_vm
 virsh resume a_vm
+
+virt-install --name $VM_NAME --vcpus 4 --ram 20480 -w network=default  --disk path=$DISK_IMAGE_PATH,format=qcow2  --disk path=config.iso,device=cdrom
