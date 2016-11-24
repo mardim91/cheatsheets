@@ -1,0 +1,4 @@
+#run manually
+rm -rf /var/lib/cloud/*
+cloud-init --file a.yaml -d single --name puppet
+# the available names can be found in cloudinit/config/cc_(1).py
