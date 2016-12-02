@@ -1,0 +1,2 @@
+functest openstack snapshot-create
+functest openstack clean
