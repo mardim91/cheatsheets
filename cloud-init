@@ -1,4 +1,8 @@
 #run manually
-rm -rf /var/lib/cloud/*
-cloud-init --file a.yaml -d single --name puppet
+rm -rf /var/lib/cloud/* && cloud-init --file a.yaml -d single --name puppet
 # the available names can be found in cloudinit/config/cc_(1).py
+
+#cloud-config
+password: rootroot
+chpasswd: { expire: False }
+ssh_pwauth: True
