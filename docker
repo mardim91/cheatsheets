@@ -1,0 +1,14 @@
+docker run -ti <image_name> --name rski /bin/bash
+
+# "shell" into a running container (docker-1.3+)
+docker exec -ti <container_name> bash
+
+docker ps --all
+docker kill <name>
+docker rm <name>
+
+# Copy files/folders between a container and your host
+docker cp foo.txt mycontainer:/foo.txt
+
+# list all images
+docker images
