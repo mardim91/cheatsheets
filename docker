@@ -1,4 +1,8 @@
-docker run -ti <image_name> --name rski /bin/bash
+docker run --name rski -ti <image_name> /bin/bash
+
+# make a folder available in the container and make sure the container goes away when i close it
+docker run --rm=true --name zrpc -v /home/rski/Code/zrpcd/:/zrpcd -ti centos:7 /bin/bash
+
 
 # "shell" into a running container (docker-1.3+)
 docker exec -ti <container_name> bash
