@@ -1,0 +1,12 @@
+download the fuel-plugin-(project)
+change the hooks
+change the versioning(metadata.yaml)
+build (fpb --build .)
+scp to fuel-master
+cmd: fuel plugins --install rpm_file
+cmd:fuel plugins --sync
+got to gui (admin:admin)
+settings/openstack_services
+choose the version you installed
+reset environment
+redeploy

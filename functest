@@ -1,2 +1,66 @@
+# BEGIN How to use functest container image
+
+# Pull latest functest image (master)
+docker pull functest:latest
+
+# Pull stable functest image (latest stable)
+docker pull functest:stable
+
+# run functest container
+docker run -tid --name <name> -e CI_DEBUG=false -e INSTALLER_TYPE=fuel -e INSTALLER_IP=10.20.0.2 -e DEPLOY_SCENARIO=os-odl_l2-sfc-[no]ha functest:[stable|latest]
+
+# Show all running containers
+docker ps -a
+
+# Log in functest container
+docker exec -ti <name> /bin/bash
+
+# END How to use functest container image
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# BEGIN General functest utilities
+
+# View sourced credentials
+functest openstack show-credentials
+
+# Find <repo> inside container
+cd ~/repos/<repo>
+
+# BEGIN These commands don't take into consideration tacker objects
+
+# Create snapshot of openstack state
 functest openstack snapshot-create
+
+# Clean openstack state except for snapshot'ed elements
 functest openstack clean
+
+# Edit openstack snapshot (delete elements that you want to be removed from openstack clean)
+vim ~/functest/conf/openstack_snapshot.yaml
+
+# END These commands don't take into consideration tacker objects
+
+# END General functest utilities
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# BEGIN Running SFC tests
+
+# Source openstack credentials
+source $creds
+
+# Prepare functest env
+functest env prepare
+
+# List available testcases
+functest testcase list
+
+# Run all sfc tests (You probably don't want to do this every time)
+functest testcases run odl-sfc
+
+# Run individual sfc tests
+1. Copy tackerc from controller
+2. source tackerc
+3. python ~/repos/sfc/sfc/tests/functest/<testcase>.py
+
+# END Running SFC TESTS
