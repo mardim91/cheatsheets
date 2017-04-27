@@ -1,3 +1,6 @@
+#delete vm
+virsh undefine <vm_name>
+
 # clone a vm
 virt-clone -o original  -n new_vm --auto-clone
 
